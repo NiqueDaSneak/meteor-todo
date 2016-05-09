@@ -24,12 +24,14 @@ event.preventDefault();
 // Find the text field via the React ref
 const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
 
-Tasks.insert({
-text,
-createdAt: new Date(), // current time
-owner: Meteor.userId(),
-username: Meteor.user().username,
-});
+Meteor.call('tasks.insert', text); // this replaces below
+
+// Tasks.insert({
+// text,
+// createdAt: new Date(), // current time
+// owner: Meteor.userId(),
+// username: Meteor.user().username,
+// });
 
 // Clear form
 ReactDOM.findDOMNode(this.refs.textInput).value = '';
